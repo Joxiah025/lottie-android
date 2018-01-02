@@ -316,11 +316,16 @@ public class Layer {
                   break;
                 case "a":
                   reader.beginArray();
-                  textProperties = AnimatableTextProperties.Factory.newInstance(reader, composition);
+                  if (reader.hasNext()) {
+                    textProperties = AnimatableTextProperties.Factory.newInstance(reader, composition);
+                  }
                   while (reader.hasNext()) {
                     reader.skipValue();
                   }
                   reader.endArray();
+                  break;
+                default:
+                  reader.skipValue();
               }
             }
             reader.endObject();
@@ -331,10 +336,13 @@ public class Layer {
             while (reader.hasNext()) {
               reader.beginObject();
               while (reader.hasNext()) {
-                if (reader.nextName().equals("nm")) {
-                  effectNames.add(reader.nextString());
-                } else {
-                  reader.skipValue();
+                switch (reader.nextName()) {
+                  case "nm":
+                    effectNames.add(reader.nextString());
+                    break;
+                  default:
+                    reader.skipValue();
+
                 }
               }
               reader.endObject();

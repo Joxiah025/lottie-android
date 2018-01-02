@@ -6,7 +6,7 @@ import com.airbnb.lottie.LottieComposition;
 import com.airbnb.lottie.model.content.ShapeGroup;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FontCharacter {
@@ -61,7 +61,7 @@ public class FontCharacter {
       double width = 0;
       String style = null;
       String fontFamily = null;
-      List<ShapeGroup> shapes = Collections.emptyList();
+      List<ShapeGroup> shapes = new ArrayList<>();
 
       reader.beginObject();
       while (reader.hasNext()) {

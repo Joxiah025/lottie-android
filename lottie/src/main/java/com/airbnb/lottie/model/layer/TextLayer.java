@@ -168,7 +168,7 @@ public class TextLayer extends BaseLayer {
       text = textDelegate.getTextInternal(text);
     }
     fillPaint.setTypeface(typeface);
-    fillPaint.setTextSize(documentData.size * Utils.dpScale());
+    fillPaint.setTextSize((float) (documentData.size * Utils.dpScale()));
     strokePaint.setTypeface(fillPaint.getTypeface());
     strokePaint.setTextSize(fillPaint.getTextSize());
     for (int i = 0; i < text.length(); i++) {

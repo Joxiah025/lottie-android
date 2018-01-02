@@ -76,7 +76,6 @@ public class AnimatablePathValue implements AnimatableValue<PointF, PointF> {
   }
 
   AnimatablePathValue(JsonReader reader, LottieComposition composition) throws IOException {
-    // TODO (json): make sure this equals hasKeyframes
     if (reader.peek() == JsonToken.BEGIN_ARRAY) {
       reader.beginArray();
       while (reader.hasNext()) {

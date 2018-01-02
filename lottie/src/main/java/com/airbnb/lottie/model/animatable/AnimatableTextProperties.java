@@ -34,11 +34,11 @@ public class AnimatableTextProperties {
 
       reader.beginObject();
       while (reader.hasNext()) {
-        String name = reader.nextName();
-        if (name.equals("a")) {
+        switch (reader.nextName()) {
+          case "a":
           anim = parseAnimatableTextProperties(reader, composition);
           break;
-        } else {
+        default:
           reader.skipValue();
         }
       }

@@ -45,9 +45,7 @@ public class AnimatableTextFrame extends BaseAnimatableValue<DocumentData, Docum
 
     @Override
     public DocumentData valueFromObject(JsonReader reader, float scale) throws IOException {
-      // STOPSHIP (json)
-      return null;
-      // return DocumentData.Factory.newInstance((JSONObject) object);
+      return DocumentData.Factory.newInstance(reader);
     }
   }
 }

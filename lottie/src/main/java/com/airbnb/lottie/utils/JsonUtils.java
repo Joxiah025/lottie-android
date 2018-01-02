@@ -1,6 +1,8 @@
 package com.airbnb.lottie.utils;
 
+import android.graphics.Color;
 import android.graphics.PointF;
+import android.support.annotation.ColorInt;
 import android.util.JsonReader;
 import android.util.JsonToken;
 
@@ -11,6 +13,21 @@ import java.util.List;
 
 public class JsonUtils {
   private JsonUtils() {
+  }
+
+  /**
+   * [r,g,b]
+   */
+  @ColorInt public static int jsonToColor(JsonReader reader) throws IOException {
+    reader.beginArray();
+    int r = (int) (reader.nextDouble() * 255);
+    int g = (int) (reader.nextDouble() * 255);
+    int b = (int) (reader.nextDouble() * 255);
+    while (reader.hasNext()) {
+      reader.skipValue();
+    }
+    reader.endArray();
+    return Color.argb(255, r, g, b);
   }
 
   public static List<PointF> jsonToPoints(JsonReader reader, float scale) throws IOException {

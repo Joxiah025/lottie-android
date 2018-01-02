@@ -390,17 +390,20 @@ public class LottieComposition {
 
       reader.beginObject();
       while (reader.hasNext()) {
-        if ("list".equals(reader.nextName())) {
-          reader.beginArray();
-          while (reader.hasNext()) {
-            Font font = Font.Factory.newInstance(reader);
-            composition.fonts.put(font.getName(), font);
-          }
-          reader.endArray();
-        } else {
-          reader.skipValue();
+        switch (reader.nextName()) {
+          case "list":
+            reader.beginArray();
+            while (reader.hasNext()) {
+              Font font = Font.Factory.newInstance(reader);
+              composition.fonts.put(font.getName(), font);
+            }
+            reader.endArray();
+            break;
+          default:
+            reader.skipValue();
         }
       }
+      reader.endObject();
     }
 
     private static void parseChars(
