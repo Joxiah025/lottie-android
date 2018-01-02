@@ -3,6 +3,7 @@ package com.airbnb.lottie.model.animatable;
 import android.graphics.Color;
 import android.support.annotation.IntRange;
 import android.util.JsonReader;
+import android.util.JsonToken;
 import android.util.Log;
 
 import com.airbnb.lottie.L;
@@ -73,11 +74,16 @@ public class AnimatableGradientColorValue extends BaseAnimatableValue<GradientCo
       List<Float> array = new ArrayList<>();
       // The array was started by Keyframe because it thought that this may be an array of keyframes
       // but peek returned a number so it considered it a static array of numbers.
-      // reader.beginArray();
+      boolean isArray = reader.peek() == JsonToken.BEGIN_ARRAY;
+      if (isArray) {
+        reader.beginArray();
+      }
       while (reader.hasNext()) {
         array.add((float) reader.nextDouble());
       }
-      // reader.endArray();
+      if(isArray) {
+        reader.endArray();
+      }
       if (colorPoints == -1) {
         colorPoints = array.size() / 4;
       }

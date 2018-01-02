@@ -146,6 +146,7 @@ public class GradientStroke implements ContentModel {
             break;
           case "t":
             gradientType = reader.nextInt() == 1 ? GradientType.Linear : GradientType.Radial;
+            break;
           case "s":
             startPoint = AnimatablePointValue.Factory.newInstance(reader, composition);
             break;
